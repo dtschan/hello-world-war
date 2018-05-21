@@ -13,7 +13,7 @@ pipeline {
         stage('Build') {
             steps {
                 withMaven(maven: 'M3') {
-                    sh "mvn -B -V -U -e clean verify"
+                    sh "mvn -B -V -U -e clean verify -DskipTests"
                 }
             }
         }
