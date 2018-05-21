@@ -12,14 +12,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                withMaven(maven: 'M3' {
+                withMaven(maven: 'M3') {
                     sh "mvn -B -V -U -e clean verify"
                 }
             }
         }
         stage('Test') {
             steps {
-                withMaven(maven: 'M3' {
+                withMaven(maven: 'M3') {
                     sh "mvn -B -V -U -e verify -Dsurefire.useFile=false"
                 }
             }
