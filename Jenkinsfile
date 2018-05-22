@@ -22,7 +22,7 @@ pipeline {
                 withMaven(maven: 'M3') {
                     sh "mvn -B -V -U -e verify -Dsurefire.useFile=false"
                 }
-                addHtmlBadge html:"<a href=\"../hello-world-war-deploy/build?delay=0sec\">Deploy</a> "
+                addHtmlBadge html:"<a href=\"/job/hello-world-war-deploy/parambuild?delay=0sec&built_name=hello-world-war&built_number=${BUILD_NUMBER}\">Deploy</a> "
             }
         }
     }
