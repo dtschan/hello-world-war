@@ -16,6 +16,7 @@ pipeline {
                     sh "mvn -B -V -U -e clean verify -DskipTests"
                 }*/
                 echo 'Building'                
+                sh 'env'
             }
         }
         stage('Test') {
