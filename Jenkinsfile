@@ -19,9 +19,11 @@ pipeline {
         }
         stage('Test') {
             steps {
-                withMaven(maven: 'M3') {
+                /*withMaven(maven: 'M3') {
                     sh "mvn -B -V -U -e verify -Dsurefire.useFile=false"
-                }
+                }*/
+                echo 'Building'
+                sleep 1
                 addHtmlBadge html:"<a href=\"/job/hello-world-war-deploy/parambuild?delay=0sec&built_name=${JOB_NAME}&built_number=${BUILD_NUMBER}\">Deploy</a> "
             }
         }
