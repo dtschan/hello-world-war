@@ -23,7 +23,7 @@ pipeline {
                 script {
                     build = Jenkins.instance.getItemByFullName(built_name).getBuild(built_number)
                     addBadge icon: '/userContent/16x16/star-gold.png', text: "deployed ${built_name} #${built_number} to ${target_env}", link: "/${build.getUrl()}"
-                    build.addAction(BadgeAction.createBadge('star-gold.png', "deployed to ${target_env}", "${currentBuild.rawBuild.getUrl()}/console"))
+                    build.addAction(BadgeAction.createBadge('star-gold.png', "deployed to ${target_env}", "/${currentBuild.rawBuild.getUrl()}/console"))
                     build.keepLog(true)
                     build = null
                 }
