@@ -1,4 +1,5 @@
 import com.jenkinsci.plugins.badge.action.BadgeAction
+import com.jenkinsci.plugins.badge.action.BadgeSummaryAction
 
 @NonCPS
 def buildPromoted() {
