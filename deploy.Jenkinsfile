@@ -5,10 +5,10 @@ import com.jenkinsci.plugins.badge.action.BadgeSummaryAction
 def buildPromoted() {
     def build = Jenkins.instance.getItemByFullName(built_name).getBuild(built_number)
 //    addBadge icon: '/userContent/16x16/star-gold.png', text: "Deployed ${built_name} #${built_number} to ${target_env}", link: "/${build.getUrl()}"
-//    createSummary icon: '/userContent/48x48/star-gold.png', text: "Deployed <a href=\"/${build.getJob().getUrl()}\">${built_name}</a> <a href=\"/${build.getUrl()}\">#${build_number}</a> to ${target_env}"
+//    createSummary icon: '/userContent/48x48/star-gold.png', text: "Deployed <a href=\"/${build.getParent().getUrl()}\">${built_name}</a> <a href=\"/${build.getUrl()}\">#${build_number}</a> to ${target_env}"
     build.addAction(BadgeAction.createBadge('star-gold.png', "deployed to ${target_env}", "/${currentBuild.rawBuild.getUrl()}"))
     def summary = new BadgeSummaryAction('/userContent/48x48/star-gold.png')
-    summary.appendText("Deployed to ${target_env} by <a href=\"/${currentBuild.rawBuild.getJob().getUrl()}\">${env.BUILD_NAME}</a> <a href=\"/${currentBuild.rawBuild.getUrl()}\">#${env.BUILD_NUMBER}</a>")
+    summary.appendText("Deployed to ${target_env} by <a href=\"/${currentBuild.rawBuild.getParent().getUrl()}\">${env.BUILD_NAME}</a> <a href=\"/${currentBuild.rawBuild.getUrl()}\">#${env.BUILD_NUMBER}</a>")
     build.keepLog(true)
 }
 
