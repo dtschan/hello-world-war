@@ -6,7 +6,7 @@ def buildPromoted() {
 //    addBadge icon: '/userContent/16x16/star-gold.png', text: "Deployed ${built_name} #${built_number} to ${target_env}", link: "/${build.getUrl()}"
 //    createSummary icon: '/userContent/48x48/star-gold.png', text: "Deployed <a href=\"/${build.getJob().getUrl()}\">${built_name}</a> <a href=\"/${build.getUrl()}\">#${build_number}</a> to ${target_env}"
     build.addAction(BadgeAction.createBadge('star-gold.png', "deployed to ${target_env}", "/${currentBuild.rawBuild.getUrl()}"))
-    build.keepLog()
+    build.keepLog(true)
 }
 
 pipeline {
