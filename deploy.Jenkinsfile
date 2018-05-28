@@ -11,7 +11,7 @@ def buildPromoted() {
     def summary = new BadgeSummaryAction('/userContent/48x48/star-gold-e.png')
     summary.appendText("Deployed <a href=\"/${build.getParent().getUrl()}\">${built_name}</a> <a href=\"/${build.getUrl()}\">#${built_number}</a> to ${target_env}")
     deploy.addAction(summary)
-    build.addAction(BadgeAction.createBadge('/userContent/16x16/star-gold.png', "deployed to ${target_env}", "/${currentBuild.rawBuild.getUrl()}")) 
+    build.addAction(BadgeAction.createBadge('/userContent/16x16/star-gold.png', "Deployed to ${target_env} by ${env.JOB_NAME} #${env.BUILD_NUMBER}", "/${currentBuild.rawBuild.getUrl()}")) 
     summary = new BadgeSummaryAction('/userContent/48x48/star-gold.png')
     summary.appendText("Deployed to ${target_env} by <a href=\"/${currentBuild.rawBuild.getParent().getUrl()}\">${env.JOB_NAME}</a> <a href=\"/${currentBuild.rawBuild.getUrl()}\">#${env.BUILD_NUMBER}</a>")
     build.addAction(summary)
