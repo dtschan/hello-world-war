@@ -1,5 +1,14 @@
 import com.jenkinsci.plugins.badge.action.BadgeAction
 
+@NonCPS
+def buildPromoted() {
+    build = Jenkins.instance.getItemByFullName(built_name).getBuild(built_number)
+//    addBadge icon: '/userContent/16x16/star-gold.png', text: "Deployed ${built_name} #${built_number} to ${target_env}", link: "/${build.getUrl()}"
+//    createSummary icon: '/userContent/48x48/star-gold.png', text: "Deployed <a href=\"/${build.getJob().getUrl()}\">${built_name}</a> <a href=\"/${build.getUrl()}\">#${build_number}</a> to ${target_env}"
+    build.addAction(BadgeAction.createBadge('star-gold.png', "deployed to ${target_env}", "/${currentBuild.rawBuild.getUrl()}"))
+    build.keepLog()
+}
+
 pipeline {
     agent any
     options {
@@ -20,14 +29,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo "Deploying ${built_name} build #${built_number} to ${target_env}"
-                script {
-                    build = Jenkins.instance.getItemByFullName(built_name).getBuild(built_number)
-                    addBadge icon: '/userContent/16x16/star-gold.png', text: "Deployed ${built_name} #${built_number} to ${target_env}", link: "/${build.getUrl()}"
-                    createSummary icon: '/userContent/48x48/star-gold.png', text: "Deployed <a href=\"/${build.getJob().getUrl()}\">${built_name}</a> <a href=\"/${build.getUrl()}\">#${build_number}</a> to ${target_env}"
-                    build.addAction(BadgeAction.createBadge('star-gold.png', "deployed to ${target_env}", "/${currentBuild.rawBuild.getUrl()}"))
-                    build.keepLog(true)
-                    build = null
-                }
+                buildPromoted()
                //copyArtifacts(projectName: 'hello-world-war', selector: specific("${built.number}"));
             }
         }
