@@ -36,13 +36,14 @@ pipeline {
     }*/
     stages {
         stage('Deploy') {
-            steps {
-                if (build_name && built_number) {
-                    echo "Deploying ${built_name} build #${built_number} to ${target_env}"
-                    buildPromoted()
-                } else {
-                    echo "No build selected for deployment, skipping."
+            when {
+                expression {                
+                    return build_name && built_number
                 }
+            }
+            steps {
+                    echo "Deploying ${built_name} build #${built_number} to ${target_env}"
+                    buildPromoted()               
             }
         }
     }
