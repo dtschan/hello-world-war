@@ -38,7 +38,7 @@ pipeline {
         stage('Deploy') {
             when {
                 expression {                
-                    return build_name && built_number
+                    return built_name && built_number
                 }
             }
             steps {
