@@ -37,9 +37,12 @@ pipeline {
     stages {
         stage('Deploy') {
             steps {
-                echo "Deploying ${built_name} build #${built_number} to ${target_env}"
-                buildPromoted()
-               //copyArtifacts(projectName: 'hello-world-war', selector: specific("${built.number}"));
+                if build_name && built_number {
+                    echo "Deploying ${built_name} build #${built_number} to ${target_env}"
+                    buildPromoted()
+                } else {
+                    echo "No build selected for deployment, skipping."
+                }
             }
         }
     }
