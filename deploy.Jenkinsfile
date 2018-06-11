@@ -43,6 +43,7 @@ pipeline {
             }
             steps {
                     echo "Deploying ${built_name} build #${built_number} to ${target_env}"
+                    sh 'env'
                     buildPromoted()               
             }
         }
