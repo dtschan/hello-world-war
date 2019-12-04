@@ -5,10 +5,10 @@ pipeline {
         timestamps()
         ansiColor('xterm')
     }
-    /*triggers {
+    triggers {
         pollSCM('H/5 * * * *')
-        snapshotDependencies()
-    }*/
+        //snapshotDependencies()
+    }
     stages {
         stage('Build') {
             steps {
